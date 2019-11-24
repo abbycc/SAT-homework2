@@ -82,13 +82,13 @@ public class HelloWorldTest {
          * TODO：finish the test function
          */
         HelloWorld hw = new HelloWorld();
-        boolean a = hw.isTriangle(0,1,1);
-        boolean b = hw.isTriangle(1,0,1);
-        boolean c = hw.isTriangle(1,1,0);
-        boolean d = hw.isTriangle(1,1,2);
-        boolean e = hw.isTriangle(1,2,1);
-        boolean f = hw.isTriangle(2,1,1);
-        boolean g = hw.isTriangle(1,1,1);
+        assertEquals(hw.isTriangle(0,1,1),false);
+        assertEquals(hw.isTriangle(1,0,1),false);
+        assertEquals(hw.isTriangle(1,1,0),false);
+        assertEquals(hw.isTriangle(1,1,2),false);
+        assertEquals(hw.isTriangle(1,2,1),false);
+        assertEquals(hw.isTriangle(2,1,1),false);
+        assertEquals(hw.isTriangle(1,1,1),true);
 
     }
 
@@ -106,31 +106,34 @@ public class HelloWorldTest {
             for(int j = 0; j<3 ; j++ )
                 for(int l = 0; l<3; l++)
                 {
-                    boolean a = hw.isBirthday(y[i],m[j],d[l]);
+                    if( y[i] == 1880 || y[i] == 2020 || m[j] == 0 || m[j] == 13 || d[l] == 0 || d[l]==40 )
+                     assertEquals( hw.isBirthday(y[i],m[j],d[l]),false);
+                    else
+                        assertEquals( hw.isBirthday(y[i],m[j],d[l]),true);
+
                 }
 
-        boolean b = hw.isBirthday(2019,12,3);
-        boolean c = hw.isBirthday(2019,10,2);
-        boolean f = hw.isBirthday(2019,10,1);
-        boolean e = hw.isBirthday(2019,12,1);
-        boolean n = hw.isBirthday(2019,1,1);
+        //assertEquals( hw.isBirthday(2019,12,3),false);
+        assertEquals( hw.isBirthday(2019,10,1),true);
+        assertEquals( hw.isBirthday(2019,10,2),false);
+        assertEquals( hw.isBirthday(2019,12,1),false);
+        assertEquals( hw.isBirthday(2019,1,1),true);
 
         for(int k = 1 ; k<=12 ; k ++ ){
             if(k==2)
                 continue;
-            e  = hw.isBirthday(2009,k,1);
-            e  = hw.isBirthday(2009,k,31);
-;
+            if ((k == 1 || k == 3 || k == 5 || k == 7 || k == 8 || k == 10 || k == 12 ) )
+                assertEquals( hw.isBirthday(2009,k,1),true);
+            else{
+                assertEquals( hw.isBirthday(2009,k,31),false);
+                assertEquals( hw.isBirthday(2009,k,1),true);
+
+            }
         }
-        boolean v = hw.isBirthday(1900,2,3);
-        boolean j = hw.isBirthday(2012,2,29);
-        boolean k = hw.isBirthday(1900,2,29);
-        boolean g = hw.isBirthday(2012,2,30);
-        boolean o = hw.isBirthday(2000,2,29);
-        boolean p = hw.isBirthday(2000,2,30);
 
-
-
+        assertEquals( hw.isBirthday(2012,2,29),true);
+        assertEquals( hw.isBirthday(2000,2,29),true);
+        assertEquals( hw.isBirthday(2000,2,30),false);
     }
 
 
